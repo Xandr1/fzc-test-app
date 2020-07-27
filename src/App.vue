@@ -28,7 +28,7 @@
         <v-btn v-if="!isLoginned" @click="login()" class="btn-login"
           >Login</v-btn
         >
-        <router-view v-if="isLoginned"></router-view>
+        <router-view></router-view>
       </div>
     </v-card>
   </v-app>
@@ -37,23 +37,21 @@
 export default {
   name: "App",
   data: () => ({
-    isLoginned: null,
+    isLoginned: false,
     link: "/people",
   }),
   mounted() {
-    if (localStorage.isLoginned) this.isLoginned = localStorage.isLoginned;
-
-    if (!localStorage.isLoginned && this.$router.path !== "/")
-      this.$router.push("/").catch(() => {});
+    if (localStorage.isLoginned)
+      this.isLoginned = JSON.parse(localStorage.isLoginned);
   },
   methods: {
     login() {
+      localStorage.isLoginned = true;
       this.isLoginned = true;
-      localStorage.isLoginned = this.isLoginned;
     },
     logout() {
+      localStorage.isLoginned = false;
       this.isLoginned = false;
-      localStorage.isLoginned = this.isLoginned;
 
       if (this.$router.path !== "/") this.$router.push("/").catch(() => {});
     },

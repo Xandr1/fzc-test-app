@@ -19,7 +19,6 @@ const getters = {
     }));
   },
   singleUser: (state) => (id) => {
-    console.log("s", state.peopleList, id);
     return state.peopleList[id];
   },
 };
@@ -36,7 +35,6 @@ const actions = {
       .get("https://randomuser.me/api/?results=50")
       .then((response) => {
         context.commit("SET_PEOPLE", response.data.results);
-        console.log(response.data.results);
       })
       .catch((error) => {
         console.log(error);

@@ -10,11 +10,25 @@ const routes = [
     path: "/people",
     name: "People",
     component: People,
+    beforeEnter: (to, from, next) => {
+      if (!JSON.parse(localStorage.isLoginned)) {
+        next("/");
+      } else {
+        next();
+      }
+    },
   },
   {
     path: "/people/:id",
     name: "SingleUser",
     component: SingleUser,
+    beforeEnter: (to, from, next) => {
+      if (!JSON.parse(localStorage.isLoginned)) {
+        next("/");
+      } else {
+        next();
+      }
+    },
   },
 ];
 
