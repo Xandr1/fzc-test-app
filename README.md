@@ -1,6 +1,5 @@
 # fzc-app
 
-## Project demo
 
 Technologies: Vue.js, VueX, Vue Router, Vuetify
 
